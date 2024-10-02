@@ -1,38 +1,44 @@
-### 0. Generate auth token
-GET http://admin:admin@localhost:8111/authenticationTest.html?csrf
-Accept: application/json
+### Constants
+@host = localhost
+
+### Generated test data
+@projectId = {{$random.alphabetic(10)}}
+@buildTypeId = {{$random.alphabetic(10)}}
 
 ### 1. Create project
-POST http://admin:admin@localhost:8111/app/rest/projects
+# @no-cookie-jar
+POST http://{{host}}:8111/app/rest/projects
 Content-Type: application/json
 Accept: application/json
-X-TC-CSRF-Token: 576f0137-10ae-4878-8c28-37f77e579c55
+Authorization: Basic admin admin
 
 {
   "parentProject": {
     "locator": "_Root"
   },
-  "name": "name",
-  "id": "id",
+  "name": "{{projectId}}",
+  "id": "{{projectId}}",
   "copyAllAssociatedSettings": true
 }
 
+
 ### 2. Create build configuration
-POST http://admin:admin@localhost:8111/app/rest/buildTypes
+# @no-cookie-jar
+POST http://{{host}}:8111/app/rest/buildTypes
 Content-Type: application/json
 Accept: application/json
-X-TC-CSRF-Token: 576f0137-10ae-4878-8c28-37f77e579c55
+Authorization: Basic admin admin
 
 {
-  "id": "id",
-  "name": "Print Hello world",
+  "id": "{{buildTypeId}}",
+  "name": "Print hello world",
   "project": {
-    "id": "id"
+    "id": "{{projectId}}"
   },
   "steps": {
     "step": [
       {
-        "name": "Print Hello world",
+        "name": "Print hello world",
         "type": "simpleRunner",
         "properties": {
           "property": [
@@ -56,19 +62,14 @@ X-TC-CSRF-Token: 576f0137-10ae-4878-8c28-37f77e579c55
 }
 
 ### 3. Run build
-POST http://admin:admin@localhost:8111/app/rest/buildQueue
+# @no-cookie-jar
+POST http://{{host}}:8111/app/rest/buildQueue
 Content-Type: application/json
 Accept: application/json
-X-TC-CSRF-Token: 576f0137-10ae-4878-8c28-37f77e579c55
+Authorization: Basic admin admin
 
 {
   "buildType": {
-    "id": "id"
+    "id": "{{buildTypeId}}"
   }
 }
-
-### 4. Check build status
-GET http://admin:admin@localhost:8111/app/rest/builds/id:1
-Content-Type: application/json
-Accept: application/json
-X-TC-CSRF-Token: 576f0137-10ae-4878-8c28-37f77e579c55
