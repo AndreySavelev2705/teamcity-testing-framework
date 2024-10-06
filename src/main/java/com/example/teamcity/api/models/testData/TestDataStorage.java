@@ -63,7 +63,6 @@ public class TestDataStorage {
                                 new UncheckedBase(Specifications.superUserSpec(), endpoint).delete(id)
                         )
                 )
-
         );
 
         createdEntitiesMap.clear();

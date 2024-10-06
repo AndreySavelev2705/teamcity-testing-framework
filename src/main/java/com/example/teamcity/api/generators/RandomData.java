@@ -2,6 +2,11 @@ package com.example.teamcity.api.generators;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+/**
+ * Класс-генератор случайных данных.
+ *
+ * @author Andrey Savelev
+ */
 public final class RandomData {
     public static final String TEST_PREFIX = "test_";
     public static final Integer MAX_LENGTH = 10;

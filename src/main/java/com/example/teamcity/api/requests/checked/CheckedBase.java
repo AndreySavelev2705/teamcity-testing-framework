@@ -10,9 +10,9 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
 
 /**
+ * Класс, который описывает CRUD эндпоинт для проверяемых запросов
  *
- *
- * @param <T>
+ * @param <T> Наследник базовой модели, которая используется в запросах.
  *
  * @author Andrey Savelev
  */
@@ -33,7 +33,6 @@ public final class CheckedBase<T extends BaseModel> extends Request implements C
                 .extract().as(endpoint.getModelClass());
 
         TestDataStorage.getStorage().addCreatedEntity(endpoint, createdModel);
-
         return createdModel;
     }
 

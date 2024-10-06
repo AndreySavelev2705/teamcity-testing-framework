@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 /**
  * Поля с этой аннотацией не будут генерироваться рандомным или параметризованным значением.
  * Необходимо указывать значение вручную.
+ *
+ * @author Andrey Savelev
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 /**
  * Поля с этой аннотацией будут заполняться рандомными данными
+ *
+ * @author Andrey Savelev
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

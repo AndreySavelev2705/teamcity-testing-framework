@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 /**
  * Поля с этой аннотацией будут заполняться переданным значением,
  * если параметр передан
+ *
+ * @author Andrey Savelev
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

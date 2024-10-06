@@ -28,6 +28,8 @@ public class BuildType extends BaseModel {
 
     @Random
     private String name;
+
+    @Parametrizable
     private Project project;
     private Steps steps;
 }
