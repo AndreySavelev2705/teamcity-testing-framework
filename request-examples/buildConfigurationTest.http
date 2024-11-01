@@ -21,7 +21,6 @@ Authorization: Basic admin admin
   "copyAllAssociatedSettings": true
 }
 
-
 ### 2. Create build configuration
 # @no-cookie-jar
 POST http://{{host}}:8111/app/rest/buildTypes

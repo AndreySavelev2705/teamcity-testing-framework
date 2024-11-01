@@ -25,6 +25,12 @@ public final class CheckedBase<T extends BaseModel> extends Request implements C
         this.uncheckedBase = new UncheckedBase(spec, endpoint);
     }
 
+    /**
+     * Метод создающий HTTP запрос на создание модели.
+     *
+     * @param model объект модели, на основе которого будет создано тело запроса.
+     * @return созданная модель.
+     */
     @Override
     public T create(BaseModel model) {
         var createdModel = (T) uncheckedBase
@@ -36,26 +42,45 @@ public final class CheckedBase<T extends BaseModel> extends Request implements C
         return createdModel;
     }
 
+    /**
+     * Метод создающий HTTP запрос на получение модели.
+     *
+     * @param locator локатор модели.
+     * @return полученная модель.
+     */
     @Override
-    public T read(String id) {
+    public T read(String locator) {
         return (T) uncheckedBase
-                .read(id)
+                .read(locator)
                 .then().assertThat().statusCode(HttpStatus.SC_OK)
                 .extract().as(endpoint.getModelClass());
     }
 
+    /**
+     * Метод создающий HTTP запрос на изменение модели.
+     *
+     * @param locator локатор модели.
+     * @param model модель на которую нужно обновить существующую модель.
+     * @return обновленная модель.
+     */
     @Override
-    public T update(String id, BaseModel model) {
+    public T update(String locator, BaseModel model) {
         return (T) uncheckedBase
-                .update(id, model)
+                .update(locator, model)
                 .then().assertThat().statusCode(HttpStatus.SC_OK)
                 .extract().as(endpoint.getModelClass());
     }
 
+    /**
+     * Метод создающий HTTP запрос на удаление модели
+     *
+     * @param locator локатор модели.
+     * @return ответ от сервера.
+     */
     @Override
-    public String delete(String id) {
+    public String delete(String locator) {
         return uncheckedBase
-                .delete(id)
+                .delete(locator)
                 .then().assertThat().statusCode(HttpStatus.SC_OK)
                 .extract().asString();
     }

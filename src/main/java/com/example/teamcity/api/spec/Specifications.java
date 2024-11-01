@@ -37,7 +37,7 @@ public class Specifications {
     /**
      * Метод создает и возвращает спецификацию без авторизации.
      *
-     * @return спецификация
+     * @return спецификация.
      */
     public static RequestSpecification unauthSpec() {
         return reqBuilder()
@@ -50,7 +50,7 @@ public class Specifications {
      * Метод создает и возвращает спецификацию с авторизацией.
      *
      * @param user пользователь, которого нужно авторизовать.
-     * @return спецификация
+     * @return спецификация.
      */
     public static RequestSpecification authSpec(User user) {
         return reqBuilder()

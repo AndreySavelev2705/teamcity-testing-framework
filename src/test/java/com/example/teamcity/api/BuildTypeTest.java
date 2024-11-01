@@ -91,20 +91,20 @@ public class BuildTypeTest extends BaseApiTest {
         superUserCheckRequests.<User>getRequest(USERS).update(firstUser.getId(), testData.getUser());
 
         // Step 4. Create user #2
-        testData = generate();
-        var secondUser = superUserCheckRequests.<User>getRequest(USERS).create(testData.getUser());
-        var secondUserCheckedRequest = new CheckedRequests(Specifications.authSpec(testData.getUser()));
+        var secondTestData = generate();
+        var secondUser = superUserCheckRequests.<User>getRequest(USERS).create(secondTestData.getUser());
+        var secondUserCheckedRequest = new CheckedRequests(Specifications.authSpec(secondTestData.getUser()));
 
         // Step 5. Create project #2 by user #2
-        secondUserCheckedRequest.<Project>getRequest(PROJECTS).create(testData.getProject());
+        secondUserCheckedRequest.<Project>getRequest(PROJECTS).create(secondTestData.getProject());
 
         // Step 6. Grand user #2 PROJECT_ADMIN role in project #2
-        testData.getUser().setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + testData.getProject().getId()));
-        superUserCheckRequests.<User>getRequest(USERS).update(secondUser.getId(), testData.getUser());
+        secondTestData.getUser().setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + secondTestData.getProject().getId()));
+        superUserCheckRequests.<User>getRequest(USERS).update(secondUser.getId(), secondTestData.getUser());
 
         // Step 7. Create build type #1 for project #1 by user #2
-        testData.getBuildType().setProject(firstProject);
-        var response = new UncheckedBase(Specifications.authSpec(secondUser), BUILD_TYPES).create(testData.getBuildType());
+        secondTestData.getBuildType().setProject(firstProject);
+        var response = new UncheckedBase(Specifications.authSpec(secondUser), BUILD_TYPES).create(secondTestData.getBuildType());
 
         // Step 8. Check build type #1 was not created with bad forbidden code
         response.then().assertThat().statusCode(HttpStatus.SC_UNAUTHORIZED)

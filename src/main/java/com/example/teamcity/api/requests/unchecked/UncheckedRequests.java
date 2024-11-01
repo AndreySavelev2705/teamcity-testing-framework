@@ -19,6 +19,12 @@ public class UncheckedRequests {
         }
     }
 
+    /**
+     * Метод возвращает непроверяемый запрос по эндпоинту.
+     *
+     * @param endpoint ключ по которому ищется запрос.
+     * @return непроверяемый запрос.
+     */
     public UncheckedBase getRequest(Endpoint endpoint) {
         return requests.get(endpoint);
     }

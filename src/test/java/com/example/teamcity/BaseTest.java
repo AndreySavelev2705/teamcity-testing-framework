@@ -1,4 +1,4 @@
-package com.example.teamcity.api;
+package com.example.teamcity;
 
 import com.example.teamcity.api.models.testData.TestData;
 import com.example.teamcity.api.models.testData.TestDataStorage;
@@ -18,7 +18,7 @@ import static com.example.teamcity.api.generators.TestDataGenerator.generate;
 public class BaseTest {
     protected SoftAssert softy;
     protected CheckedRequests superUserCheckRequests = new CheckedRequests(Specifications.superUserSpec());
-    TestData testData;
+    protected TestData testData;
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest() {

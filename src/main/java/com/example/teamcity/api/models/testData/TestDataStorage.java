@@ -10,6 +10,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Класс описывающий хранилище тестовых данных.
+ *
+ * @author Andrey Savelev
+ */
 public class TestDataStorage {
     private static TestDataStorage testDataStorage;
     private final EnumMap<Endpoint, Set<String>> createdEntitiesMap;
@@ -17,8 +22,6 @@ public class TestDataStorage {
     private TestDataStorage() {
         createdEntitiesMap = new EnumMap<>(Endpoint.class);
     }
-
-    ;
 
     public static TestDataStorage getStorage() {
         if (testDataStorage == null) {
@@ -53,10 +56,20 @@ public class TestDataStorage {
         }
     }
 
+    /**
+     * Метод регестрирует в хранилище созданную сущность, группируя по эндпоинту.
+     *
+     * @param endpoint по-которому проходит группировка, и по-которому была создана сущность.
+     * @param model созданная сущность.
+     */
     public void addCreatedEntity(Endpoint endpoint, BaseModel model) {
         addCreatedEntity(endpoint, getEntityIdOrLocator(model));
     }
 
+    /**
+     * Метод удаляет созданную сущность.
+     *
+     */
     public void deleteCreatedEntities() {
         createdEntitiesMap.forEach(((endpoint, ids) ->
                         ids.forEach(id ->
@@ -64,7 +77,6 @@ public class TestDataStorage {
                         )
                 )
         );
-
         createdEntitiesMap.clear();
     }
 }

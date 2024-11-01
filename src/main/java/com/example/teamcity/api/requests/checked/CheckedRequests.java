@@ -20,6 +20,13 @@ public class CheckedRequests {
         }
     }
 
+    /**
+     * Метод возвращает проверяемый запрос по эндпоинту.
+     *
+     * @param endpoint ключ по которому ищется запрос.
+     * @return проверяемый запрос.
+     * @param <T> тип модели.
+     */
     public <T extends BaseModel> CheckedBase<T> getRequest(Endpoint endpoint) {
         return (CheckedBase<T>) requests.get(endpoint);
     }
