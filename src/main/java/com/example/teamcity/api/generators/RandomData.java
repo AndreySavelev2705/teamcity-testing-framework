@@ -1,0 +1,22 @@
+package com.example.teamcity.api.generators;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+/**
+ * Класс-генератор случайных данных.
+ *
+ * @author Andrey Savelev
+ */
+public final class RandomData {
+    public static final String TEST_PREFIX = "test_";
+    public static final Integer MAX_LENGTH = 10;
+
+    public static String getString() {
+        return TEST_PREFIX + RandomStringUtils.randomAlphabetic(MAX_LENGTH);
+    }
+
+    public static String getString(int length) {
+        return TEST_PREFIX + RandomStringUtils
+                .randomAlphabetic(Math.max(length - TEST_PREFIX.length(), MAX_LENGTH));
+    }
+}
